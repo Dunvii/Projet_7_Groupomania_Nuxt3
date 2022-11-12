@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Titillium+Web:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.button-login {
+    @apply uppercase rounded-full  text-white text-sm hover:shadow-md bg-primary bg-opacity-50 hover:bg-primary w-40 h-10 shadow-sm
+}
+.button-login_2 {
+    @apply uppercase text-white rounded-lg w-32 h-10 hover:border-primary bg-third bg-opacity-50 hover:bg-third shadow-sm hover:shadow-md text-sm
+}
+
+.button-valid {
+    @apply text-sm p-1 border rounded-full hover:bg-green-alert hover:border-green-alert hover:text-white
+}
+
+.input-auth {
+    @apply border border-third rounded-lg py-2 px-4 outline-none hover:border-secondary focus:border-primary
+}
+
+.alert-error {
+    @apply w-fit bg-red-alert border border-red-alert rounded-lg p-2 text-white text-center
+}
+
+.alert-success {
+    @apply w-fit bg-green-alert border border-green-alert rounded-lg p-2 text-white text-center
+}
+
+.alert-warning {
+    @apply w-fit bg-warning-alert border border-warning-alert rounded-lg p-2 text-white text-center
+}
