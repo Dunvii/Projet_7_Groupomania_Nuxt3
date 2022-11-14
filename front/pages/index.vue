@@ -4,7 +4,7 @@ useHead({
   title: 'Groupomania - Acceuil', 
 })
 
-definePageMeta({  middleware: [] })
+definePageMeta({  middleware: ["auth", "infoscheck"] })
 
 const data = reactive({
     posts: [],
@@ -12,7 +12,6 @@ const data = reactive({
 
 async function fetchAllPosts(){
     data.posts = await getAllPosts();
-    console.log(data.posts);
 }
 
 fetchAllPosts();
@@ -22,6 +21,6 @@ fetchAllPosts();
   <NuxtLayout>
   <NavBar />
   <NewPost v-on:refreshPosts="fetchAllPosts()"/>
-  <Post v-on:refreshPosts="fetchAllPosts()" v-for="post of data.posts" :post="post" :key="post.id" /> 
+  <Post v-on:refreshPosts="fetchAllPosts()" v-for="post of data.posts.posts" :post="post" :key="post.id" /> 
 </NuxtLayout>
 </template>

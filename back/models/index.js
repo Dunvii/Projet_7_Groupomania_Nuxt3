@@ -1,10 +1,13 @@
 'use strict';
-
+const bcrypt = require('bcrypt');
+const { User } = require('../models');
 const fs = require('fs');
 const path = require('path');
 const Sequelize = require('@sequelize/core');
 const process = require('process');
 const basename = path.basename(__filename);
+const dotenv = require("dotenv");
+dotenv.config();
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.js')[env];
 const db = {};
@@ -32,7 +35,24 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-
+sequelize.sync()
+  .then(async ()=> {
+    const searchAdmin = await db.User.findOne({
+      where: {
+        admin: true,
+      }
+    });
+    if (!searchAdmin){
+      bcrypt.hash(process.env.PASSWORDADMIN,10).then((hash) => {
+        db.User.create({
+          email: process.env.EMAILADMIN,
+          password: hash,
+          admin: true,
+        });
+      })
+    }
+  })
+  .catch((error) => console.log(error));
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

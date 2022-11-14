@@ -1,3 +1,4 @@
+import { Login, resAuth } from '~/types/login';
 export async function updateUser(avatar, email, firstName, lastName, password, newPassword){
     const auth = useCookie('auth');
     const formData = new FormData();
@@ -8,27 +9,33 @@ export async function updateUser(avatar, email, firstName, lastName, password, n
         formData.append("oldPassword", password);  
         formData.append("newPassword", password);
         if(avatar != false) {
-            await useFetch(`http://192.168.31.186:3000/api/auth/modify`, { 
-                method: 'PUT', 
-                body: formData, 
-                headers: {
-                    'Authorization': `Bearer ${auth.value}`,
-                },
-                async onResponse({ request, response, options }) {
-                    return response._data;
-                }
+            return new Promise((resolve) => {
+                $fetch(`${useRuntimeConfig().APIURL}auth/modify`, { 
+                    method: 'PUT', 
+                    body: formData, 
+                    headers: {
+                        'Authorization': `Bearer ${auth.value}`,
+                    },
+                    async onResponse({ request, response, options }) {
+                        await loginProcess<Login>(email, password);
+                        resolve(response._data);
+                    }
+                })
             })
         }
-        await useFetch(`http://192.168.31.186:3000/api/auth/modify`, { 
-            method: 'PUT',  
-            headers: {
-                'Content-type': 'application/json',
-                'Authorization': `Bearer ${auth.value}`, // notice the Bearer before your token
-            },
-            body: { user: { firstName: firstName, lastName: lastName }, email: email, oldPassword: password, newPassword: password },
-            async onResponse({ request, response, options }) {
-                return response._data;
-            }
+        return new Promise((resolve) => {
+            $fetch(`${useRuntimeConfig().APIURL}auth/modify`, { 
+                method: 'PUT',  
+                headers: {
+                    'Content-type': 'application/json',
+                    'Authorization': `Bearer ${auth.value}`, // notice the Bearer before your token
+                },
+                body: { user: { firstName: firstName, lastName: lastName }, email: email, oldPassword: password, newPassword: password },
+                async onResponse({ request, response, options }) {
+                    await loginProcess<Login>(email, password);
+                    resolve(response._data);
+                }
+            })
         })
     }
     if (newPassword != false) {
@@ -38,27 +45,33 @@ export async function updateUser(avatar, email, firstName, lastName, password, n
         formData.append("oldPassword", password);  
         formData.append("newPassword", newPassword);
         if(avatar != false) {
-        await useFetch(`http://192.168.31.186:3000/api/auth/modify`, { 
-            method: 'PUT', 
-            body: formData, 
+            return new Promise((resolve) => {
+                $fetch(`${useRuntimeConfig().APIURL}auth/modify`, { 
+                    method: 'PUT', 
+                    body: formData, 
+                    headers: {
+                        'Authorization': `Bearer ${auth.value}`,
+                    },
+                    async onResponse({ request, response, options }) {
+                        await loginProcess<Login>(email, newPassword);
+                        resolve(response._data);
+                    }
+                })
+            })
+        }
+        return new Promise((resolve) => {
+            $fetch(`${useRuntimeConfig().APIURL}auth/modify`, { 
+            method: 'PUT',  
             headers: {
-                'Authorization': `Bearer ${auth.value}`,
+                'Content-type': 'application/json',
+                'Authorization': `Bearer ${auth.value}`, // notice the Bearer before your token
             },
+            body: { user: { firstName: firstName, lastName: lastName }, email: email, oldPassword: password, newPassword: newPassword },
             async onResponse({ request, response, options }) {
-                return response._data;
+                await loginProcess<Login>(email, newPassword);
+                resolve(response._data);
             }
-        })
-        }
-        await useFetch(`http://192.168.31.186:3000/api/auth/modify`, { 
-        method: 'PUT',  
-        headers: {
-            'Content-type': 'application/json',
-            'Authorization': `Bearer ${auth.value}`, // notice the Bearer before your token
-        },
-        body: { user: { firstName: firstName, lastName: lastName }, email: email, oldPassword: password, newPassword: newPassword },
-        async onResponse({ request, response, options }) {
-            return response._data;
-        }
+            })
         })
     }
 

@@ -2,7 +2,7 @@ import { PCR } from '~/stores/objects';
 export async function getAllPosts(){
     const auth = useCookie('auth');
     return new Promise((resolve) => {
-        $fetch('http://192.168.31.186:3000/api/posts/', { 
+        $fetch(`${useRuntimeConfig().APIURL}posts/`, { 
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${auth.value}`,

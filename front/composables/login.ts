@@ -5,13 +5,15 @@ export async function loginProcess<Login>(email, password){
     console.log("1");
     return new Promise((resolve) => {
         console.log("2");   
-        $fetch('http://192.168.31.186:3000/api/auth/login', { 
+        $fetch(`${useRuntimeConfig().APIURL}auth/login`, { 
             method: 'POST',  
             headers: {
                 'Content-Type': 'application/json'
             },
             body: { 'email': email, 'password': password },
             async onResponse({ request, response, options }) {
+                let auth = useCookie('auth');
+                let userInfos = useCookie('userInfos');
                 console.log("3")    // Process the response data    
                 if(response._data.alert == 1){
                     auth.value = undefined;

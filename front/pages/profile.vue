@@ -41,29 +41,16 @@ async function fetchUpdateUser() {
     .then((data:any) => {
       switch(data.alert){
         case 1: 
-          auth.value = undefined;
-          auth.value = data.token;
-          user.infos = undefined;
-          user.infos = data.infos;
           object.loading = false;
           alertShow.toggleAlert = true;
           alertShow.alertMsg = data.message;
           alertShow.alertSuccess = true;
+          userInfos = useCookie('userInfos');
           A.avatarToShow = userInfos.value.avatarUrl;
           A.firstName = userInfos.value.firstName;
           A.lastName = userInfos.value.lastName;
           break;
-        case 2:
-          auth.value = undefined;
-          user.infos = undefined;  
-          object.loading = false;
-          alertShow.toggleAlert = true;
-          alertShow.alertMsg = data.message;
-          alertShow.alertWarning = true;
-          break;
         case 3:
-          auth.value = undefined;
-          user.infos = undefined;  
           object.loading = false;
           alertShow.toggleAlert = true;
           alertShow.alertMsg = data.message;
@@ -71,44 +58,32 @@ async function fetchUpdateUser() {
       }
     })
   }
-  console.log(A.avatarUrl, A.email, A.firstName, A.lastName, A.password, A.newPassword);
   object.loading = true;
   A.newPassword = false;
   await updateUser(A.avatarUrl, A.email, A.firstName, A.lastName, A.password, A.newPassword)
   .then((data:any) => {
     switch(data.alert){
         case 1: 
-          auth.value = undefined;
-          auth.value = data.token;
-          user.infos = undefined;
-          user.infos = data.infos;
           object.loading = false;
           alertShow.toggleAlert = true;
           alertShow.alertMsg = data.message;
           alertShow.alertSuccess = true;
           alertShow.alertWarning = false;
           alertShow.alertError = false;
+          userInfos = useCookie('userInfos');
           A.avatarToShow = userInfos.value.avatarUrl;
           A.firstName = userInfos.value.firstName;
           A.lastName = userInfos.value.lastName;
           break;
-        case 2:
-          auth.value = undefined;
-          user.infos = undefined;  
-          object.loading = false;
-          alertShow.toggleAlert = true;
-          alertShow.alertMsg = data.message;
-          alertShow.alertWarning = true;
-          break;
         case 3:
-          auth.value = undefined;
-          user.infos = undefined;  
           object.loading = false;
           alertShow.toggleAlert = true;
           alertShow.alertMsg = data.message;
           alertShow.alertError = true;
+          break;
       }
   })
+
 }
 
 

@@ -9,8 +9,7 @@ const indexData = defineProps({
         required: true,
     }
 })
-console.log(indexData.post);
-console.log(userInfos);
+
 const emit = defineEmits(['refreshPosts']);
 
 const data = reactive({
@@ -30,7 +29,7 @@ const data = reactive({
 
 async function fetchAllCommentsOfPosts(postId){
     const res = await getAllCommentsOfPosts(postId);
-    data.comments = res.comment;
+    data.comments = res.comments;
 }
 fetchAllCommentsOfPosts(indexData.post.id); 
 
@@ -47,9 +46,6 @@ async function reqDeletePost(postId) {
     emit('refreshPosts');
 }
 
-async function refreshAllComments() {
-    await fetchAllCommentsOfPosts(indexData.post.id);
-}
 
 </script>
 <template lang="">
@@ -75,7 +71,7 @@ async function refreshAllComments() {
                 <img :src="indexData.post.imageUrl"/>
             </div>
             <ReactivePostContent :editUpdate="data.editUpdate" :post="indexData.post" v-on:refreshPosts="emit('refreshPosts')" v-on:disableEdit="data.editUpdate = false"/>    
-            <CommentPart v-if="!data.editUpdate" :commentsToggle="data.commentsToggle" v-on:refreshComments="refreshAllComments()" :post="indexData.post" :comments="data.comments"><Reactions :post="indexData.post" v-on:refreshPosts="emit('refreshPosts')" /></CommentPart>
+            <CommentPart v-if="!data.editUpdate" :commentsToggle="data.commentsToggle" v-on:refreshComments="fetchAllCommentsOfPosts(indexData.post.id);" :post="indexData.post" :comments="data.comments"><Reactions :post="indexData.post" v-on:refreshPosts="emit('refreshPosts')" /></CommentPart>
         </div>
     </div>
 </template>

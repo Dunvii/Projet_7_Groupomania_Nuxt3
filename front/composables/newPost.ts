@@ -5,7 +5,7 @@ export async function newPost(image, content){
     formData.append("image", image);
     formData.append("content", content);  
     if(image != false) {
-        const resImage = await $fetch("http://192.168.31.186:3000/api/posts/", { 
+        const resImage = await $fetch(`${useRuntimeConfig().APIURL}posts/`, { 
             method: 'POST', 
             body: formData, 
             headers: {
@@ -14,7 +14,7 @@ export async function newPost(image, content){
         })
         return resImage;
     }
-    const res = await $fetch("http://192.168.31.186:3000/api/posts/", { 
+    const res = await $fetch(`${useRuntimeConfig().APIURL}posts/`, { 
         method: 'POST',  
         body: { content: content },
         headers: {

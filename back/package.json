@@ -4,7 +4,7 @@
   "description": "groupomania social entreprise solution",
   "main": "server.js",
   "scripts": {
-    "start": "node server",
+    "build": "node server",
     "dev": "nodemon server"
   },
   "author": "ARZUR Loïk",

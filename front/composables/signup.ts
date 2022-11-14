@@ -1,7 +1,7 @@
 import { Login, resAuth } from '~/types/login';
 export function signupProcess<Login>(email, password){
     return new Promise((resolve) => {
-        $fetch('http://192.168.31.186:3000/api/auth/signup', { 
+        $fetch(`${useRuntimeConfig().APIURL}auth/signup`, { 
             method: 'POST',  
             headers: {
                 'Content-Type': 'application/json'

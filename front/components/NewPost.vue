@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const userInfos = useCookie('userInfos');
 const emit = defineEmits(['refreshPosts']);
 
 const data = reactive({
@@ -18,11 +18,16 @@ function imageChange(e) {
 
 async function fetchNewPost(){
     data.loading = true;
+    if(userInfos.value.firstName == null || userInfos.value.lastName == null) {
+        navigateTo('/profile');
+    }
+    else{
     await newPost(data.image, data.content);
     data.loading = false;
     data.newPost = true;
     emit('refreshPosts');
     setTimeout(() => {data.newPost = false}, 1000)
+    }
 }
 
 </script>

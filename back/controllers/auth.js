@@ -106,7 +106,7 @@ exports.modify = (req, res, next) => {
                 })
                 .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))  
         })
-        .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))    
+    .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))    
 }
 
 

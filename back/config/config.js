@@ -8,17 +8,17 @@ module.exports = {
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
+    "username": process.env.DB_USER_TEST,
+    "password": process.env.DB_PASSWORD_TEST,
+    "database": process.env.DB_DTB_TEST,
+    "host": process.env.DB_HOST_TEST,
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
+    "username": process.env.DB_USER_PROD,
+    "password": process.env.DB_PASSWORD_PROD,
+    "database": process.env.DB_DTB_PROD,
+    "host": process.env.DB_HOST_PROD,
     "dialect": "mysql"
   }
 };

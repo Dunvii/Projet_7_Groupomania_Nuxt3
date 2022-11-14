@@ -22,8 +22,8 @@ exports.getOneComment = (req, res, next) => {
 exports.getAllCommentsOfPost = (req, res, next) => {
     console.log(req.params.id)
     Comment.findAll({ include: [Post, User] , where : { PostId: req.params.id }})
-    .then((comment) => {
-        res.status(200).json({ comment, alert: 1 })
+    .then((comments) => {
+        res.status(200).json({ comments: comments, alert: 1 })
     })
     .catch((error) => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
 }

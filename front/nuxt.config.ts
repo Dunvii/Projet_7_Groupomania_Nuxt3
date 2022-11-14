@@ -19,5 +19,10 @@ export default defineNuxtConfig({
     },
     css: [
         '@fortawesome/fontawesome-svg-core/styles.css'
-      ]
+      ],
+      runtimeConfig: {
+        public: {
+            APIURL: process.env.APIURL,
+        }
+      }
 })
