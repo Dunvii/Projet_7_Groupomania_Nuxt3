@@ -29,6 +29,7 @@ exports.getAllCommentsOfPost = (req, res, next) => {
 }
 
 exports.deleteComment = (req, res, next) => {
+    console.log(req.auth);
     Comment.findOne({ where: { id: req.params.id }})
     .then((comment) => {
         if(req.auth.userId == comment.UserId || req.auth.admin == true){

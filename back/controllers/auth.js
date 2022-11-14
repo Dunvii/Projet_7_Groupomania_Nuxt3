@@ -38,7 +38,7 @@ exports.login = (req, res, next) => {
                         message: "Connexion réussis",
                         infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl},
                         token: jwt.sign(
-                            { userId: user.id, admin: user.rank },
+                            { userId: user.id, admin: user.admin },
                             process.env.SECRET_TOKEN,
                             { expiresIn: '24h' }
                         )
