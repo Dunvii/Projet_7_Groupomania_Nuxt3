@@ -40,6 +40,7 @@ sequelize.sync()
     const searchAdmin = await db.User.findOne({
       where: {
         admin: true,
+        email: process.env.EMAILADMIN,
       }
     });
     if (!searchAdmin){

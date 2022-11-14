@@ -9,16 +9,17 @@ export default defineNuxtRouteMiddleware((to, from) => {
                 'Authorization': `Bearer ${auth.value}`,
             },
             async onResponse({ request, response, options }) {
-                if (!response.status === 200){
+                if (response.status != 200){
+                    console.log("test")
                     auth.value = undefined;
                     userInfos.value = undefined;
-                    navigateTo("/auth/login");
-                    resolve();
+                    resolve(("/auth/login"));
+                    
                 }
                 else{
                     resolve();
                 }
-            }
+            },
         })
     })
 })

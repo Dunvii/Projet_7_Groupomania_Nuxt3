@@ -3,11 +3,11 @@ import { alertShow, object } from '~/stores/objects';
 
 const userInfos = useCookie('userInfos');
 const auth = useCookie('auth');
-
+console.log(userInfos.value);
 const data = reactive({
     computerMenuToggle: ref(false),
     responsiveMenuToggle: ref(false),
-    avatarToShow: userInfos.value.avatarUrl,
+    avatarToShow: userInfos?.value?.avatarUrl,
 })
 
 

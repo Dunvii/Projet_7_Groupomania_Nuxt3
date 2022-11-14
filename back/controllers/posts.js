@@ -2,7 +2,7 @@ const { User, Post, Reaction, Comment } = require('../models');
 
 
 exports.getAllPosts = (req, res, next) => {
-    Post.findAll({ include: [User, Reaction, Comment] })
+    Post.findAll({ include: [User, Reaction, Comment], order:[['createdAt', 'DESC']] })
     .then(
         (posts) => {
             res.status(200).json({ alert: 1 , posts });
