@@ -69,42 +69,68 @@ exports.modify = (req, res, next) => {
         .then(userInfos => {
                 bcrypt.compare(req.body.oldPassword, userInfos.password)
                 .then(valid => {
-                    if(req.auth.userId == userInfos.id) {
-                        bcrypt.hash(req.body.newPassword, 10)
-                        .then(hash => {
+                    if(valid){
+                        if(req.auth.userId == userInfos.id ) {
+                            bcrypt.hash(req.body.newPassword, 10)
+                            .then(hash => {
+                                User.update(
+                                    {
+                                        ...toModify,
+                                        password: hash
+                                    },
+                                    {
+                                        where: { id: userInfos.id }
+                                    }
+                                )
+                                .then((user) => res.status(200).json({ alert: 1, message: "Compte mis à jour", infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl},
+                                token: jwt.sign(
+                                    { userId: user.id, admin: user.admin },
+                                    process.env.SECRET_TOKEN,
+                                    { expiresIn: '24h' }
+                                ) }))
+                                .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                            })
+                            .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                        }
+                        if(req.auth.userId == userInfos.id && req.auth.admin == true) {
+                            bcrypt.hash(req.body.newPassword, 10)
+                            .then(hash => {
+                                User.update(
+                                    {
+                                        ...toModify,
+                                        password: hash
+                                    },
+                                    {
+                                        where: { id: userInfos.id }
+                                    }
+                                )
+                                .then((user) => res.status(200).json({ alert: 1, message: "Compte mis à jour", infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl},
+                                token: jwt.sign(
+                                    { userId: user.id, admin: user.admin },
+                                    process.env.SECRET_TOKEN,
+                                    { expiresIn: '24h' }
+                                ) }))
+                                .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                            })
+                            .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                        }
+                        if(req.auth.admin == true){
                             User.update(
                                 {
-                                    ...toModify,
-                                    password: hash
+                                    ...toModify
                                 },
                                 {
                                     where: { id: userInfos.id }
                                 }
                             )
-                            .then((user) => res.status(200).json({ alert: 1, message: "Compte mis à jour", infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl},
-                            token: jwt.sign(
-                                { userId: user.id, admin: user.rank },
-                                process.env.SECRET_TOKEN,
-                                { expiresIn: '24h' }
-                            ) }))
+                            .then((user) => res.status(200).json({ alert: 1, message: "Compte mis à jour", infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl} }))
                             .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
-                        })
-                        .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                        }
                     }
-                    if(req.auth.admin == true){
-                        User.update(
-                            {
-                                ...toModify
-                            },
-                            {
-                                where: { id: userInfos.id }
-                            }
-                        )
-                        .then((user) => res.status(200).json({ alert: 1, message: "Compte mis à jour", infos : { id: user.id, firstName: user.firstName, lastName : user.lastName, admin : user.admin, email : user.email, avatarUrl : user.avatarUrl} }))
-                        .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))
+                    else {
+                        res.status(409).json({ alert: 2, message:"Mot de passe incorrect"})
                     }
                 })
-                .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))  
         })
     .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }))    
 }

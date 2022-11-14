@@ -15,7 +15,7 @@ const data = reactive({
 })
 
 const likes = computed(() => fromPost.post.Reactions.filter((reaction) => reaction.type == "like"));
-const liked = computed(() => typeof likes.value.find((reaction) => reaction.userId == userInfos.id) === "object");
+const liked = computed(() => typeof likes.value.find((reaction) => reaction.userId == userInfos.value.id) === "object");
 
 async function fetchReactionsSystem(postId, status, type) {
     await reactionSystem(postId, status, type);

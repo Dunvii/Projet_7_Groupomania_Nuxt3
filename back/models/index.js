@@ -35,6 +35,10 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
+db.sequelize.sync({ alter : true });
+
 sequelize.sync()
   .then(async ()=> {
     const searchAdmin = await db.User.findOne({
@@ -54,9 +58,5 @@ sequelize.sync()
     }
   })
   .catch((error) => console.log(error));
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-db.sequelize.sync({ alter : true });
 
 module.exports = db;
