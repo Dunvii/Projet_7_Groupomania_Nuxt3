@@ -1,9 +1,14 @@
 
+![Logo](http://5.39.84.218:3000/_nuxt/assets/images/groupomania.webp)
+
+
 ## Installation
 
 Pour l'installation du réseau social une base de données MySQL ou MariaDB est requise.
 Pour ce qu'il en est du déploiement des tables Sequelize s'occupe de l'initialisation de celles ci.
 Auquels cas un fichier SQL est présent dans le repos.
+
+⚠ Le dossier et les dossiers parents ne doivent pas contenir d'espace dans leur nom. Un soucis avec le framework est actuellement connus et pas encore résolu à ce jour ⚠
 
 Commandes à effectuer depuis le dossier root :
 ```bash

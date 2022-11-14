@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+const userInfos = useCookie('userInfos');
+
 const fromPost = defineProps({ 
     commentsToggle: {
         type:Boolean,
@@ -23,9 +25,14 @@ const data = reactive({
 const emit = defineEmits(['refreshComments']);
 
 async function fetchAddCommentOnPost() {
-    await addCommentOnPost(fromPost.post.id, data.content);
-    data.content = null;
-    emit('refreshComments');
+    if(userInfos.value.firstName == null || userInfos.value.lastName == null) {
+        navigateTo('/profile');
+    }
+    else {
+        await addCommentOnPost(fromPost.post.id, data.content);
+        data.content = null;
+        emit('refreshComments');
+    }
 
 }
 

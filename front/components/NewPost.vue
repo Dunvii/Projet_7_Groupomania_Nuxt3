@@ -22,11 +22,11 @@ async function fetchNewPost(){
         navigateTo('/profile');
     }
     else{
-    await newPost(data.image, data.content);
-    data.loading = false;
-    data.newPost = true;
-    emit('refreshPosts');
-    setTimeout(() => {data.newPost = false}, 1000)
+        await newPost(data.image, data.content);
+        data.loading = false;
+        data.newPost = true;
+        emit('refreshPosts');
+        setTimeout(() => {data.newPost = false}, 1000)
     }
 }
 

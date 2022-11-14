@@ -4,7 +4,7 @@ useHead({
   title: 'Groupomania - Acceuil', 
 })
 
-definePageMeta({  middleware: ["auth", "infoscheck"] })
+definePageMeta({  middleware: ["auth"] })
 
 const data = reactive({
     posts: [],

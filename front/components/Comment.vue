@@ -35,7 +35,8 @@ async function fetchDeleteComment() {
         <div class="flex flex-col mx-4 my-4">
             <div class="flex items-center my-2">
                 <font-awesome-icon icon="fa-solid fa-circle-user" class="mr-4 text-xl text-third hover:text-primary"/>
-                <h3 class="text-sm">{{ fromCommentPart.comment.User.email }}</h3>
+                <span><img :src="fromCommentPart.comment.User.avatarUrl" class="rounded-full h-6 w-6 mr-4"></span>
+                <h3 class="text-sm">{{ fromCommentPart.comment.User.firstName }} {{ fromCommentPart.comment.User.lastName }}</h3>
             </div>
             <div class="flex">
                 <div class="flex flex-col">
