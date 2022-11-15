@@ -7,9 +7,6 @@
 Réseau social interne d'entreprise réalisé via Nuxt 3 (Front-end), Express / Sequelize (Back-end).
 
 
-
-![Logo](http://5.39.84.218:3000/_nuxt/assets/images/groupomania.webp)
-
 ## Installation
 
 Pour l'installation du réseau social une base de données MySQL ou MariaDB est requise.
