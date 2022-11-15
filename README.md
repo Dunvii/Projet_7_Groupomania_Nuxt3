@@ -130,14 +130,9 @@ le "type" est le nom définis dans la base de donnés.
 le "status" s'occupe de la situation de l'utilsateur d'avoir réagis ou non à un post : 
 1 : Ajout d'une réaction
 0 : Retrait d'une réaction.
-## Demo
-
-Insert gif or link to demo
-
-
 ## Tech Stack
 
-**Client:** React, Redux, TailwindCSS
+**Client:** Nuxt 3, TailwindCSS
 
-**Server:** Node, Express
+**Server:** Node, Express, @Sequelize/core
 
