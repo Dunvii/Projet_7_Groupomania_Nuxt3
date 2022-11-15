@@ -2,6 +2,14 @@
 ![Logo](http://5.39.84.218:3000/_nuxt/assets/images/groupomania.webp)
 
 
+# Groupomania
+
+Réseau social interne d'entreprise réalisé via Nuxt 3 (Front-end), Express / Sequelize (Back-end).
+
+
+
+![Logo](http://5.39.84.218:3000/_nuxt/assets/images/groupomania.webp)
+
 ## Installation
 
 Pour l'installation du réseau social une base de données MySQL ou MariaDB est requise.
@@ -12,6 +20,8 @@ Auquels cas un fichier SQL est présent dans le repos.
 
 Commandes à effectuer depuis le dossier root :
 ```bash
+  git clone https://github.com/Dunvii/Projet_7_Groupomania_Nuxt3.git
+  cd Projet_7_Groupomania_Nuxt3
   cd back
   npm install
   cd ../front
@@ -49,8 +59,8 @@ DEFAULT_AVATAR="DEFAULT URL AVATAR"
 
 # ADMIN ACCOUNT
 
-USERNAME=""
-PASSWORD=""
+USERNAME="admin"
+PASSWORD="password"
 
 # BACKEND PORT
 BACKENDPORT="3000"
@@ -60,7 +70,7 @@ Un autre fichier .env est necessaire à la racine du dossier front :
 
 ```js
 
-APIURL=""
+APIURL="http://LIEN.COM:PORT/api"
 
 ```
 ### MISE EN SERVICE
@@ -68,8 +78,66 @@ APIURL=""
 Commandes à effectuer depuis le dossier back et front :
 
 ```bash
-  DEV : npm run dev
-  BUILD : npm run build
+  DEV MODE : npm run dev
+  BUILD MODE : npm run build
 ```
 
-Par default le port 3000 est définis pour le fonctionnement du serveur
+Par default le port 3000 est définis pour le fonctionnement du serveur back.
+Pour modifier le port de deploiement du front modifiez son package.json et ajouter -p PORT dans les scripts de lancement 
+
+## PORT
+
+Par default le port 3000 est définis pour le fonctionnement du serveur back, vous pouvez le modifier dans le .env du back.
+Pour modifier le port de deploiement du front modifiez son package.json et ajouter -p PORT dans les scripts de lancement 
+
+```javascript
+"scripts": {
+    "build": "nuxt build -p 80",
+    "dev": "nuxt dev -p 80",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+```
+
+
+## FAQ
+
+#### Fonctionnement
+
+Le réseau social interne d'entreprise permer de se creer un compte via une adresse email et un mot de passe.
+La possibilité de créer des postes avec un système de reactions et de commentaires.
+Les posts et commentaires sont modifiables et supprimables. Un administrateur à lui aussi les mêmes possibilités.
+Via l'espace profil il est possible de modifier son nom, prenom, avatar et mot de passe.
+Dans l'espace settings une option de suppression de compte est disponible.
+
+#### Compte administrateur
+
+Vous pouvez creer un compte administrateur en rajoutant un email et un mot de passe dans le fichier .env :
+
+```bash
+# ADMIN ACCOUNT
+
+USERNAME=""
+PASSWORD=""
+```
+
+#### Système de réaction
+
+Un système de réactions modulable a été mis en place, il est possible de rajouter n'importe quel type de reaction dans le front en respectant le système suivant:
+
+le "type" est le nom définis dans la base de donnés.
+le "status" s'occupe de la situation de l'utilsateur d'avoir réagis ou non à un post : 
+1 : Ajout d'une réaction
+0 : Retrait d'une réaction.
+## Demo
+
+Insert gif or link to demo
+
+
+## Tech Stack
+
+**Client:** React, Redux, TailwindCSS
+
+**Server:** Node, Express
+
