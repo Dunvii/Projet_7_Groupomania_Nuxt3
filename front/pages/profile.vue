@@ -108,7 +108,7 @@ async function fetchUpdateUser() {
         <h1 class="text-2xl">Mon Profil</h1>
       </div>
       <form class="flex flex-col gap-8 w-full items-center ">
-        <img :src="A.avatarToShow" class="rounded-full w-64 sm:w-32"/>
+        <img :src="A.avatarToShow" class="rounded-full w-64 h-64 sm:w-32"/>
         <label class="block hover:cursor-pointer">
           <input v-on:change="imageChange" type="file" title=" " class="hover:cursor-pointer block w-full text-sm text-third file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:bg-secondary file:text-third file:hover:text-white file:hover:bg-primary"/>
         </label>
