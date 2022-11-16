@@ -1,8 +1,5 @@
 
-![Logo](http://5.39.84.218:3000/_nuxt/assets/images/groupomania.webp)
-
-
-# Groupomania
+![Logo](https://i.ibb.co/2qhQN04/groupomania.png)
 
 Réseau social interne d'entreprise réalisé via Nuxt 3 (Front-end), Express / Sequelize (Back-end).
 
