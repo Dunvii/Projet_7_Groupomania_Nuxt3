@@ -1,5 +1,5 @@
 
-![Logo](https://i.ibb.co/VV9Zm04/groupomania.png)
+![Logo](https://i.ibb.co/2qhQN04/groupomania.png)
 
 Réseau social interne d'entreprise réalisé via Nuxt 3 (Front-end), Express / Sequelize (Back-end).
 
