@@ -51,8 +51,8 @@ exports.login = (req, res, next) => {
 
 exports.delete = (req, res, next) => {
     if (req.auth.admin == true) {
-        User.deleteOne({ where: { email: req.body.email } })
-            .then(res.status(200).json({ alert: 1, message: "Account deleted" }))
+        User.destroy({ where: { email: req.body.email } })
+            .then(res.status(200).json({ alert: 1, message: "Compte supprimé" }))
             .catch(error => res.status(500).json({ alert: 3, message:"Erreur serveur", error: error }));
     }
     else {

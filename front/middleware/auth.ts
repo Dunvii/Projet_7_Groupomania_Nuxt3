@@ -13,7 +13,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
                     console.log("test")
                     auth.value = undefined;
                     userInfos.value = undefined;
-                    resolve(("/auth/login"));
+                    resolve(navigateTo("/auth/login"));
                     
                 }
                 else{

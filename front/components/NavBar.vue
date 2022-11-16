@@ -35,7 +35,7 @@ async function logout(){
                 <font-awesome-icon icon="fa-solid fa-caret-up" class="absolute right-2 -top-2 text-white"/>
                 <ul class="my-3 text-sm ml-2">
                     <NuxtLink to="/profile"><li class="group hover:text-primary"><font-awesome-icon icon="fa-solid fa-user-pen" class="group-hover:text-primary text-third text-xs w-5"/>Mon profil</li></NuxtLink>
-                    <NuxtLink to="/settings"><li class="group hover:text-primary"><font-awesome-icon icon="fa-solid fa-gear" class="group-hover:text-primary text-third text-xs w-5"/>Paramètres</li></NuxtLink>
+                    <NuxtLink v-if="userInfos.admin == true" to="/settings"><li class="group hover:text-primary"><font-awesome-icon icon="fa-solid fa-gear" class="group-hover:text-primary text-third text-xs w-5"/>Paramètres</li></NuxtLink>
                 </ul>
             </div>
         </ul>
@@ -46,7 +46,7 @@ async function logout(){
     <ul v-if="data.responsiveMenuToggle" class="computer:hidden flex flex-col items-center py-4 text-lg bg-white shadow-sm gap-2 mb-5">
         <NuxtLink to="/profile"><li class="hover:text-primary">Mon Profil</li></NuxtLink>
         <div class="w-full h-0.5 bg-third/20"></div>
-        <NuxtLink to="/settings"><li class="hover:text-primary">Parametres</li></NuxtLink>
+        <NuxtLink v-if="userInfos.admin == true" to="/settings"><li class="hover:text-primary">Parametres</li></NuxtLink>
         <div class="w-full h-0.5 bg-third/20"></div>
         <button @click.prevent="logout" class="hover:text-primary">Deconnexion</button>
     </ul>
