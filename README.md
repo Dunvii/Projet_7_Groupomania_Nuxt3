@@ -17,6 +17,7 @@ Commandes à effectuer depuis le dossier root :
   git clone https://github.com/Dunvii/Projet_7_Groupomania_Nuxt3.git
   cd Projet_7_Groupomania_Nuxt3
   cd back
+  mkdir images
   npm install
   cd ../front
   npm install
@@ -32,16 +33,16 @@ DB_USER_DEV="USER"
 DB_PASSWORD_DEV="PASSWORD"
 
 # SQL TEST
-DB_HOST_DEV="HOST"
-DB_DTB_DEV="DATABASE"
-DB_USER_DEV="USER"
-DB_PASSWORD_DEV="PASSWORD"
+DB_HOST_TEST="HOST"
+DB_DTB_TEST="DATABASE"
+DB_USER_TEST="USER"
+DB_PASSWORD_TEST="PASSWORD"
 
 # SQL PROD
-DB_HOST_DEV="HOST"
-DB_DTB_DEV="DATABASE"
-DB_USER_DEV="USER"
-DB_PASSWORD_DEV="PASSWORD"
+DB_HOST_PROD="HOST"
+DB_DTB_PROD="DATABASE"
+DB_USER_PROD="USER"
+DB_PASSWORD_PROD="PASSWORD"
 
 # TOKEN
 
@@ -53,8 +54,8 @@ DEFAULT_AVATAR="DEFAULT URL AVATAR"
 
 # ADMIN ACCOUNT
 
-USERNAME="admin"
-PASSWORD="password"
+EMAILADMIN=""
+PASSWORDADMIN=""
 
 # BACKEND PORT
 BACKENDPORT="3000"
@@ -110,10 +111,10 @@ Dans l'espace settings une option de suppression de compte est disponible.
 Vous pouvez creer un compte administrateur en rajoutant un email et un mot de passe dans le fichier .env :
 
 ```bash
-# ADMIN ACCOUNT
+# ADMIN ACCOUNT (EMAIL ET PASSWORD)
 
-USERNAME=""
-PASSWORD=""
+EMAILADMIN=""
+PASSWORDADMIN=""
 ```
 
 #### Système de réaction
