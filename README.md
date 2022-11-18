@@ -17,6 +17,7 @@ Commandes à effectuer depuis le dossier root :
   git clone https://github.com/Dunvii/Projet_7_Groupomania_Nuxt3.git
   cd Projet_7_Groupomania_Nuxt3
   cd back
+  mkdir images
   npm install
   cd ../front
   npm install
