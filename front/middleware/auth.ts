@@ -2,7 +2,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
     const auth = useCookie('auth');
     const userInfos = useCookie('userInfos');
     if(auth.value == undefined) {
-        navigateTo("/auth/login");
+        return(navigateTo("/auth/login"));
+        
     }
     return new Promise((resolve) => {
         $fetch(`${useRuntimeConfig().APIURL}posts/`, { 
