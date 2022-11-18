@@ -113,7 +113,7 @@ Vous pouvez creer un compte administrateur en rajoutant un email et un mot de pa
 ```bash
 # ADMIN ACCOUNT (EMAIL ET PASSWORD)
 
-USERNAME=""
+EMAILADMIN=""
 PASSWORD=""
 ```
 
