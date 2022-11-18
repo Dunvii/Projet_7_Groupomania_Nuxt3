@@ -54,8 +54,8 @@ DEFAULT_AVATAR="DEFAULT URL AVATAR"
 
 # ADMIN ACCOUNT
 
-USERNAME="admin"
-PASSWORD="password"
+EMAILADMIN=""
+PASSWORDADMIN=""
 
 # BACKEND PORT
 BACKENDPORT="3000"
@@ -114,7 +114,7 @@ Vous pouvez creer un compte administrateur en rajoutant un email et un mot de pa
 # ADMIN ACCOUNT (EMAIL ET PASSWORD)
 
 EMAILADMIN=""
-PASSWORD=""
+PASSWORDADMIN=""
 ```
 
 #### Système de réaction
