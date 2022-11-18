@@ -111,7 +111,7 @@ Dans l'espace settings une option de suppression de compte est disponible.
 Vous pouvez creer un compte administrateur en rajoutant un email et un mot de passe dans le fichier .env :
 
 ```bash
-# ADMIN ACCOUNT
+# ADMIN ACCOUNT (EMAIL ET PASSWORD)
 
 USERNAME=""
 PASSWORD=""
