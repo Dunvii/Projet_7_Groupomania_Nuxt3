@@ -65,7 +65,7 @@ Un autre fichier .env est necessaire à la racine du dossier front :
 
 ```js
 
-APIURL="http://LIEN.COM:PORT/api"
+APIURL="http://LIEN.COM:PORT/api/"
 
 ```
 ### MISE EN SERVICE
