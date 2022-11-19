@@ -1,6 +1,10 @@
 export default defineNuxtRouteMiddleware((to, from) => {
     const auth = useCookie('auth');
     const userInfos = useCookie('userInfos');
+    if(auth.value == undefined) {
+        return(navigateTo("/auth/login"));
+        
+    }
     return new Promise((resolve) => {
         $fetch(`${useRuntimeConfig().APIURL}posts/`, { 
             method: 'GET',  
@@ -14,7 +18,6 @@ export default defineNuxtRouteMiddleware((to, from) => {
                     auth.value = undefined;
                     userInfos.value = undefined;
                     resolve(navigateTo("/auth/login"));
-                    
                 }
                 else{
                     resolve();
